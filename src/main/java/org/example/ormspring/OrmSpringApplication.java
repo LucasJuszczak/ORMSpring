@@ -1,6 +1,8 @@
 package org.example.ormspring;
 
+import org.example.ormspring.entidades.Departamento;
 import org.example.ormspring.entidades.Funcionario;
+import org.example.ormspring.repositorios.DepartamentoRepo;
 import org.example.ormspring.repositorios.FuncionarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +15,9 @@ public class OrmSpringApplication implements CommandLineRunner {
     @Autowired
     private FuncionarioRepo funcionarioRepo;
 
+    @Autowired
+    private DepartamentoRepo departamentoRepo;
+
     public static void main(String[] args) {
         SpringApplication.run(OrmSpringApplication.class, args);
     }
@@ -23,10 +28,15 @@ public class OrmSpringApplication implements CommandLineRunner {
 //        funcionario.setNome("Alceu Dispor");
 //        funcionarioRepo.save(funcionario);
 
-        funcionarioRepo.findById(2).ifPresentOrElse(funcionario -> {
-            System.out.println(funcionario.getNome());
-        }, () -> {
-            System.out.println("Funcionário não encontrado.");
-        });
+//        funcionarioRepo.findById(2).ifPresentOrElse(funcionario -> {
+//            System.out.println(funcionario.getNome());
+//        }, () -> {
+//            System.out.println("Funcionário não encontrado.");
+//        });
+
+        Departamento departamento = new Departamento();
+        departamento.setNome("Almoxarifado");
+        departamento.getFuncionarios().add(funcionarioRepo.findById(1).get());
+        departamento.getFuncionarios().add(funcionarioRepo.findById(2).get());
     }
 }
