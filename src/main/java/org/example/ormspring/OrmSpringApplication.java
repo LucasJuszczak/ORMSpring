@@ -38,5 +38,6 @@ public class OrmSpringApplication implements CommandLineRunner {
         departamento.setNome("Almoxarifado");
         departamento.getFuncionarios().add(funcionarioRepo.findById(1).get());
         departamento.getFuncionarios().add(funcionarioRepo.findById(2).get());
+        departamentoRepo.save(departamento);
     }
 }
