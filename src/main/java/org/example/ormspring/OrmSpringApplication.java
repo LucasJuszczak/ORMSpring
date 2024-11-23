@@ -1,5 +1,6 @@
 package org.example.ormspring;
 
+import jakarta.transaction.Transactional;
 import org.example.ormspring.entidades.Departamento;
 import org.example.ormspring.entidades.Funcionario;
 import org.example.ormspring.repositorios.DepartamentoRepo;
@@ -23,6 +24,7 @@ public class OrmSpringApplication implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
 //        Funcionario funcionario = new Funcionario();
 //        funcionario.setNome("Alceu Dispor");
@@ -34,10 +36,23 @@ public class OrmSpringApplication implements CommandLineRunner {
 //            System.out.println("Funcionário não encontrado.");
 //        });
 
-        Departamento departamento = new Departamento();
-        departamento.setNome("Almoxarifado");
-        departamento.getFuncionarios().add(funcionarioRepo.findById(1).get());
-        departamento.getFuncionarios().add(funcionarioRepo.findById(2).get());
-        departamentoRepo.save(departamento);
+//        Departamento departamento = new Departamento();
+//        departamento.setNome("Almoxarifado");
+//        departamento.getFuncionarios().add(funcionarioRepo.findById(1).get());
+//        departamento.getFuncionarios().add(funcionarioRepo.findById(2).get());
+//        departamentoRepo.save(departamento);
+
+//        funcionarioRepo.findById(1).ifPresent(funcionario -> {
+//            funcionario.setDepartamento(departamentoRepo.findById(1).get());
+//            funcionarioRepo.save(funcionario);
+//        });
+
+        funcionarioRepo.findById(2).ifPresent(funcionario -> {
+            System.out.println("ID do funcionário: " + funcionario.getId());
+            System.out.println("Nome do funcionário: " + funcionario.getNome());
+            System.out.println("ID do departamento: " + funcionario.getDepartamento().getId());
+            System.out.println("Nome do departamento: " + funcionario.getDepartamento().getNome());
+        });
+
     }
 }

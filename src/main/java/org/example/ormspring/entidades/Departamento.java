@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor
@@ -18,5 +19,5 @@ public class Departamento {
     private String nome;
 
     @OneToMany(mappedBy = "departamento")
-    private List<Funcionario> funcionarios;
+    private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 }
