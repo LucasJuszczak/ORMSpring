@@ -19,8 +19,14 @@ public class OrmSpringApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Funcionario funcionario = new Funcionario();
-        funcionario.setNome("Rolando Caio da Rocha");
-        funcionarioRepo.save(funcionario);
+//        Funcionario funcionario = new Funcionario();
+//        funcionario.setNome("Alceu Dispor");
+//        funcionarioRepo.save(funcionario);
+
+        funcionarioRepo.findById(2).ifPresentOrElse(funcionario -> {
+            System.out.println(funcionario.getNome());
+        }, () -> {
+            System.out.println("Funcionário não encontrado.");
+        });
     }
 }
