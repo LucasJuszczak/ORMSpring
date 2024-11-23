@@ -13,4 +13,8 @@ public class Funcionario {
     private int id;
 
     private String nome;
+
+    @ManyToOne
+    @JoinColumn(name = "departamento_id")
+    private Departamento departamento;
 }
